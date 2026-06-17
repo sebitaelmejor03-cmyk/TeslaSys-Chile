@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeslaSys Chile</title>
+</head>
+<body>
+    <h1>TeslaSys Chile</h1>
+    <h2>Sistema de Registro de Solicitudes de Soporte</h2>
+    <form id="formulario">
+        Nombre del colaborador:<br>
+        <input type="text" id="nombre"><br><br>
+        Correo electrónico:<br>
+        <input type="email" id="correo"><br><br>
+        Área de trabajo:<br>
+        <input type="text" id="area"><br><br>
+        Tipo de solicitud:<br>
+        <select id="tipo_solicitud">
+            <option value="">Seleccione una opción...</option>
+            <option value="Hardware">Hardware</option>
+            <option value="Software">Software</option>
+            <option value="Redes">Redes</option>
+            <option value="Seguridad">Seguridad</option>
+        </select><br><br>
+        Descripción de la solicitud:<br>
+        <textarea id="descripcion" placeholder="Descripción de la solicitud..."></textarea><br><br>
+        <button type="submit" id="registrar">Registrar</button>
+        <button type="button" id="limpiar">Limpiar</button>
+    </form>
+    <script>
+        document.getElementById("formulario").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let nombre = document.getElementById("nombre").value.trim();
+            let correo = document.getElementById("correo").value.trim();
+            let area = document.getElementById("area").value.trim();
+            let tipo_solicitud = document.getElementById("tipo_solicitud").value.trim();
+            let descripcion = document.getElementById("descripcion").value.trim();
+
+            if (nombre === "") {
+                alert("Por favor, ingresa tu nombre");
+                return;
+            }
+            if (correo === "") {
+                alert("Por favor, ingresa tu correo electrónico");
+                return;
+            }
+            if (area === "") {
+                alert("Por favor, ingresa tu área de trabajo");
+                return;
+            }
+            if (tipo_solicitud === "") {
+                alert("Por favor, ingresa el tipo de solicitud");
+                return;
+            }
+            if (descripcion === "") {
+                alert("Por favor, ingresa una descripción de la solicitud");
+                return;
+            }
+            alert("Solicitud registrada:\nNombre: " + nombre + "\nCorreo: " + correo + "\nÁrea: " + area + "\nTipo: " + tipo_solicitud + "\nDescripción: " + descripcion);
+            event.target.reset();
+        });
+        document.getElementById("limpiar").addEventListener("click", function() {
+            document.getElementById("formulario").reset();
+        });
+    </script>
+</body>
+</html>
