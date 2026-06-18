@@ -1,0 +1,7 @@
+Utilice GitHub Copilot para realizar los siguientes prompts para mejorar mi formulario HTML y mejorar el aspecto del Css.
+ 
+
+1.- Unifica todos los formularios 1,2,3,4 a uno solo.
+2.- has que los button registrar registre y que el boton Limpiar limpie todas las casillas.
+3.-"Mejora visualmente este formulario HTML utilizando CSS moderno y diseño
+responsivo."
