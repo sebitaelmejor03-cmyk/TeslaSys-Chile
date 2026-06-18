@@ -36,6 +36,21 @@
     </form>
 
     <p id="mensaje_pantalla" style="font-weight: bold;"></p>
+    <hr>
+    <h2>Solicitudes Registradas</h2>
+    <table border="1" style ="width: 100%; text-align: left;">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Área</th>
+                <th>Tipo de Solicitud</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpo_tabla">
+        </tbody>
+    </table>
 
     <script>
         let Solicitudes = [];
@@ -77,6 +92,7 @@
 
             document.getElementById("formulario").reset();
             console.log("Arreglo de Solicitudes:", Solicitudes);
+            actualizarTabla();
         }
         function limpiarFormulario() {
             document.getElementById("formulario").reset();
@@ -84,6 +100,22 @@
         }
         document.getElementById("formulario").addEventListener("submit", registrarSolicitud);
         document.getElementById("limpiar").addEventListener("click", limpiarFormulario);
+
+        function actualizarTabla() {
+            let cuerpoTabla = document.getElementById("cuerpo_tabla");
+            cuerpoTabla.innerHTML = "";
+            for (let i=0; i<Solicitudes.length; i++) {
+                let solicitud = Solicitudes[i];
+                let fila = "<tr>" +
+                    "<td>" + solicitud.nombre + "</td>" +
+                    "<td>" + solicitud.correo + "</td>" +
+                    "<td>" + solicitud.area + "</td>" +
+                    "<td>" + solicitud.tipo + "</td>" +
+                    "<td>" + solicitud.detalle + "</td>" +
+                    "</tr>";
+                cuerpoTabla.innerHTML += fila;
+            }
+        }
     </script>
 </body>
 </html>
