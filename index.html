@@ -38,41 +38,52 @@
     <p id="mensaje_pantalla" style="font-weight: bold;"></p>
 
     <script>
-        document.getElementById("formulario").addEventListener("submit", function(event) {
+        let Solicitudes = [];
+
+        function registrarSolicitud(event) {
             event.preventDefault();
+            
+            let cajaMensaje = document.getElementById("mensaje_pantalla");
             let nombre = document.getElementById("nombre").value.trim();
             let correo = document.getElementById("correo").value.trim();
             let area = document.getElementById("area").value.trim();
             let tipo_solicitud = document.getElementById("tipo_solicitud").value.trim();
             let descripcion = document.getElementById("descripcion").value.trim();
-            let cajaMensaje = document.getElementById("mensaje_pantalla");
-            
-            if (nombre === "" || correo ==="" || area === "" || tipo_solicitud === "" || descripcion === "") {
+
+            if (nombre === "" || correo === "" || area === "" || tipo_solicitud === "" || descripcion === "") {
                 cajaMensaje.style.color = "red";
-                cajaMensaje.textContent = "Advertencia: Ningun campo puede quedar vacio.";
-                return;
+                cajaMensaje.textContent = "Advertencia: Ningún campo puede quedar vacío.";
+                return; 
             }
             
             if (!correo.includes("@")) {
                 cajaMensaje.style.color = "red";
-                cajaMensaje.textContent = "Advertencia: El correo debe contener el simbolo @.";
+                cajaMensaje.textContent = "Advertencia: El correo debe contener el símbolo @.";
                 return;
             }
-            
+
+            let nuevaSolicitud = {
+                nombre_colaborador: nombre,
+                correo_electronico: correo,
+                area_trabajo: area,
+                tipo: tipo_solicitud,
+                detalle: descripcion
+            };
+
+            Solicitudes.push(nuevaSolicitud);
+
             cajaMensaje.style.color = "green";
-            cajaMensaje.textContent = "Solicitud registrada exitosamente." +
-                " Nombre: " + nombre + 
-                ", Correo: " + correo + 
-                ", Área: " + area + 
-                ", Tipo de Solicitud: " + tipo_solicitud + 
-                ", Descripción: " + descripcion;
-            event.target.reset();
-        });
-        document.getElementById("limpiar").addEventListener("click", function() {
+            cajaMensaje.textContent = "Solicitud registrada exitosamente. (Total guardadas: " + Solicitudes.length + ")";
+
             document.getElementById("formulario").reset();
-            let cajaMensaje = document.getElementById("mensaje_pantalla");
-            cajaMensaje.textContent = "";
-        });
+            console.log("Arreglo de Solicitudes:", Solicitudes);
+        }
+        function limpiarFormulario() {
+            document.getElementById("formulario").reset();
+            document.getElementById("mensaje_pantalla").textContent = "";
+        }
+        document.getElementById("formulario").addEventListener("submit", registrarSolicitud);
+        document.getElementById("limpiar").addEventListener("click", limpiarFormulario);
     </script>
 </body>
 </html>
