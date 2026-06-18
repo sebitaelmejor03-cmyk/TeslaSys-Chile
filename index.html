@@ -9,12 +9,16 @@
     <h1>TeslaSys Chile</h1>
     <h2>Sistema de Registro de Solicitudes de Soporte</h2>
     <form id="formulario">
+        
         Nombre del colaborador:<br>
         <input type="text" id="nombre"><br><br>
+        
         Correo electrónico:<br>
         <input type="email" id="correo"><br><br>
+        
         Área de trabajo:<br>
         <input type="text" id="area"><br><br>
+        
         Tipo de solicitud:<br>
         <select id="tipo_solicitud">
             <option value="">Seleccione una opción...</option>
@@ -23,11 +27,16 @@
             <option value="Redes">Redes</option>
             <option value="Seguridad">Seguridad</option>
         </select><br><br>
+        
         Descripción de la solicitud:<br>
         <textarea id="descripcion" placeholder="Descripción de la solicitud..."></textarea><br><br>
+        
         <button type="submit" id="registrar">Registrar</button>
         <button type="button" id="limpiar">Limpiar</button>
     </form>
+
+    <p id="mensaje_pantalla" style="font-weight: bold;"></p>
+
     <script>
         document.getElementById("formulario").addEventListener("submit", function(event) {
             event.preventDefault();
@@ -36,32 +45,33 @@
             let area = document.getElementById("area").value.trim();
             let tipo_solicitud = document.getElementById("tipo_solicitud").value.trim();
             let descripcion = document.getElementById("descripcion").value.trim();
-
-            if (nombre === "") {
-                alert("Por favor, ingresa tu nombre");
+            let cajaMensaje = document.getElementById("mensaje_pantalla");
+            
+            if (nombre === "" || correo ==="" || area === "" || tipo_solicitud === "" || descripcion === "") {
+                cajaMensaje.style.color = "red";
+                cajaMensaje.textContent = "Advertencia: Ningun campo puede quedar vacio.";
                 return;
             }
-            if (correo === "") {
-                alert("Por favor, ingresa tu correo electrónico");
+            
+            if (!correo.includes("@")) {
+                cajaMensaje.style.color = "red";
+                cajaMensaje.textContent = "Advertencia: El correo debe contener el simbolo @.";
                 return;
             }
-            if (area === "") {
-                alert("Por favor, ingresa tu área de trabajo");
-                return;
-            }
-            if (tipo_solicitud === "") {
-                alert("Por favor, ingresa el tipo de solicitud");
-                return;
-            }
-            if (descripcion === "") {
-                alert("Por favor, ingresa una descripción de la solicitud");
-                return;
-            }
-            alert("Solicitud registrada:\nNombre: " + nombre + "\nCorreo: " + correo + "\nÁrea: " + area + "\nTipo: " + tipo_solicitud + "\nDescripción: " + descripcion);
+            
+            cajaMensaje.style.color = "green";
+            cajaMensaje.textContent = "Solicitud registrada exitosamente." +
+                " Nombre: " + nombre + 
+                ", Correo: " + correo + 
+                ", Área: " + area + 
+                ", Tipo de Solicitud: " + tipo_solicitud + 
+                ", Descripción: " + descripcion;
             event.target.reset();
         });
         document.getElementById("limpiar").addEventListener("click", function() {
             document.getElementById("formulario").reset();
+            let cajaMensaje = document.getElementById("mensaje_pantalla");
+            cajaMensaje.textContent = "";
         });
     </script>
 </body>
