@@ -1,44 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeslaSys Chile</title>
+    <title>TeslaSys Chile - Sistema de Soporte</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>TeslaSys Chile</h1>
     <h2>Sistema de Registro de Solicitudes de Soporte</h2>
     <form id="formulario">
-        
-        Nombre del colaborador:<br>
-        <input type="text" id="nombre"><br><br>
-        
-        Correo electrónico:<br>
-        <input type="email" id="correo"><br><br>
-        
-        Área de trabajo:<br>
-        <input type="text" id="area"><br><br>
-        
-        Tipo de solicitud:<br>
-        <select id="tipo_solicitud">
-            <option value="">Seleccione una opción...</option>
-            <option value="Hardware">Hardware</option>
-            <option value="Software">Software</option>
-            <option value="Redes">Redes</option>
-            <option value="Seguridad">Seguridad</option>
-        </select><br><br>
-        
-        Descripción de la solicitud:<br>
-        <textarea id="descripcion" placeholder="Descripción de la solicitud..."></textarea><br><br>
-        
-        <button type="submit" id="registrar">Registrar</button>
-        <button type="button" id="limpiar">Limpiar</button>
+        <div class="form-group">
+            <label for="nombre">Nombre del colaborador:</label>
+            <input type="text" id="nombre" required>
+        </div>
+
+        <div class="form-group">
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" id="correo" required>
+        </div>
+
+        <div class="form-group">
+            <label for="area">Área de trabajo:</label>
+            <input type="text" id="area" required>
+        </div>
+
+        <div class="form-group">
+            <label for="tipo_solicitud">Tipo de solicitud:</label>
+            <select id="tipo_solicitud" required>
+                <option value="">Seleccione una opción...</option>
+                <option value="Hardware">Hardware</option>
+                <option value="Software">Software</option>
+                <option value="Redes">Redes</option>
+                <option value="Seguridad">Seguridad</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="descripcion">Descripción de la solicitud:</label>
+            <textarea id="descripcion" placeholder="Descripción detallada de la solicitud..." required></textarea>
+        </div>
+
+        <div id="mensaje_pantalla"></div>
+
+        <div class="button-group">
+            <button type="submit" id="registrar">Registrar</button>
+            <button type="button" id="limpiar">Limpiar</button>
+        </div>
     </form>
 
-    <p id="mensaje_pantalla" style="font-weight: bold;"></p>
     <hr>
     <h2>Solicitudes Registradas</h2>
-    <table border="1" style ="width: 100%; text-align: left;">
+    <table>
         <thead>
             <tr>
                 <th>Nombre</th>
